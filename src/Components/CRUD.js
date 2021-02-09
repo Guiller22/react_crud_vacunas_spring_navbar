@@ -1,4 +1,3 @@
-
 //npm i bootstrap reactstrap axios sweetalert
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,15 +8,18 @@ import axios from 'axios';
 import swal from 'sweetalert';
 function CRUD() {
     //direccion de la API
-    const baseUrl="http://localhost:4004/users/";
+    const baseUrl="http://localhost:4006/vacunas/";
     const [data, setData]=useState([]);
     const [modalInsertar, setModalInsertar]= useState(false);
     const [modalEditar, setModalEditar]= useState(false);
     const [modalEliminar, setModalEliminar]= useState(false);
     const [frameworkSeleccionado, setFrameworkSeleccionado]=useState({
       id: '',
-      firstName: '',
-      lastName: ''
+      nombreComunidad: '',
+      dosisPfizer: '',
+      dosisModerna: '',
+      dosisAdministradas: '',
+      personasPauta: ''
       
     });
   
@@ -55,12 +57,15 @@ function CRUD() {
     }//peticionGet
   
     const peticionPost=async()=>{
-      const usuario={
-        firstName:frameworkSeleccionado.firstName,
-        lastName:frameworkSeleccionado.lastName
+      const vacuna={
+        nombreComunidad:frameworkSeleccionado.nombreComunidad,
+        dosisPfizer:frameworkSeleccionado.dosisPfizer,
+        dosisModerna:frameworkSeleccionado.dosisModerna,
+        dosisAdministradas:frameworkSeleccionado.dosisAdministradas,
+        personasPauta:frameworkSeleccionado.personasPauta,
       };
       
-      await axios.post(baseUrl+"insertar/", usuario)
+      await axios.post(baseUrl+"insertar/", vacuna)
       .then(response=>{
        
         //cerramos la ventana modal
@@ -76,11 +81,14 @@ function CRUD() {
     const peticionPut=async()=>{
       
       
-      const usuario={
-        firstName:frameworkSeleccionado.firstName,
-        lastName:frameworkSeleccionado.lastName
+      const vacuna={
+        nombreComunidad:frameworkSeleccionado.nombreComunidad,
+        dosisPfizer:frameworkSeleccionado.dosisPfizer,
+        dosisModerna:frameworkSeleccionado.dosisModerna,
+        dosisAdministradas:frameworkSeleccionado.dosisAdministradas,
+        personasPauta:frameworkSeleccionado.personasPauta,
       };
-      await axios.put(baseUrl+"modificar/"+frameworkSeleccionado.id,usuario)
+      await axios.put(baseUrl+"modificar/"+frameworkSeleccionado.id,vacuna)
       .then(response=>{
         if (response.data!=null)
         {
@@ -136,9 +144,11 @@ function CRUD() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Acciones</th>
+            <th>nombreComunidad</th>
+            <th>dosisPfizer</th>
+            <th>dosisModerna</th>
+            <th>dosisAdministradas</th>
+            <th>personasPauta</th>
           </tr>
         </thead>
         <tbody>
@@ -151,17 +161,20 @@ function CRUD() {
               haciendo una peticion get por la url http://localhost:4008/users/
               [{"id":1,"firstName":"juan","lastName":"Perez"},
               {"id":2,"firstName":"Ana","lastName":"Soria"},
-              {"id":3,"firstName":"Luis","lastName":"Rodrigo"},
-              {"id":4,"firstName":"Raquel","lastName":"Segovia"}]
+               {"id":4,"firstName":"Raquel","lastName":"Segovia"}]
   
               
               */}
               <td>{framework.id}</td>
-              <td>{framework.firstName}</td>
-              <td>{framework.lastName}</td>
+              <td>{framework.nombreComunidad}</td>
+              <td>{framework.dosisPfizer}</td>
+              <td>{framework.dosisModerna}</td>
+              <td>{framework.dosisAdministradas}</td>
+              <td>{framework.personasPauta}</td>
               
             <td>
-            <button className="btn btn-primary" onClick={()=>seleccionarFramework(framework, "Editar")}>Editar</button> 
+              
+            <button className="btn btn-primary" onClick={()=>seleccionarFramework(framework, "Editar")}><span class="material-icons">mode_edit</span></button> 
             <button className="btn btn-danger" onClick={()=>seleccionarFramework(framework, "Eliminar")}>Eliminar</button>
             </td>
             </tr>
@@ -174,16 +187,28 @@ function CRUD() {
   
   
       <Modal isOpen={modalInsertar}>
-        <ModalHeader>Insertar Usuarios</ModalHeader>
+        <ModalHeader>Insertar Vacunas</ModalHeader>
         <ModalBody>
           <div className="form-group">
-            <label>First Name: </label>
+            <label>Nombre Comunidad:</label>
             <br />
-            <input type="text" className="form-control" name="firstName" onChange={handleChange}/>
+            <input type="text" className="form-control" name="nombreComunidad" onChange={handleChange}/>
             <br />
-            <label>Last Name: </label>
+            <label>Dosis Pfizer: </label>
             <br />
-            <input type="text" className="form-control" name="lastName" onChange={handleChange}/>
+            <input type="text" className="form-control" name="dosisPfizer" onChange={handleChange}/>
+            <br />
+            <label>Dosis Moderna: </label>
+            <br />
+            <input type="text" className="form-control" name="dosisModerna" onChange={handleChange}/>
+            <br />
+            <label>Dosis Administradas: </label>
+            <br />
+            <input type="text" className="form-control" name="dosisAdministradas" onChange={handleChange}/>
+            <br />
+            <label>Personas Pauta: </label>
+            <br />
+            <input type="text" className="form-control" name="personasPauta" onChange={handleChange}/>
             <br />
             
           </div>
@@ -196,16 +221,28 @@ function CRUD() {
       </Modal>
   
       <Modal isOpen={modalEditar}>
-        <ModalHeader>Editar Usuarios</ModalHeader>
+        <ModalHeader>Editar Vacunas</ModalHeader>
         <ModalBody>
           <div className="form-group">
-            <label>Nombre: </label>
+          <label>Nombre Comunidad:</label>
             <br />
-            <input type="text" className="form-control" name="firstName" onChange={handleChange} value={frameworkSeleccionado && frameworkSeleccionado.firstName}/>
+            <input type="text" className="form-control" name="nombreComunidad" onChange={handleChange}/>
             <br />
-            <label>Lanzamiento: </label>
+          <label>Dosis Pfizer: </label>
             <br />
-            <input type="text" className="form-control" name="lastName" onChange={handleChange} value={frameworkSeleccionado && frameworkSeleccionado.lastName}/>
+            <input type="text" className="form-control" name="dosisPfizer" onChange={handleChange}/>
+            <br />
+            <label>Dosis Moderna: </label>
+            <br />
+            <input type="text" className="form-control" name="dosisModerna" onChange={handleChange}/>
+            <br />
+            <label>Dosis Administradas: </label>
+            <br />
+            <input type="text" className="form-control" name="dosisAdministradas" onChange={handleChange}/>
+            <br />
+            <label>Personas Pauta: </label>
+            <br />
+            <input type="text" className="form-control" name="personasPauta" onChange={handleChange}/>
             <br />
             
           </div>
@@ -218,7 +255,7 @@ function CRUD() {
   
       <Modal isOpen={modalEliminar}>
           <ModalBody>
-          ¿Estás seguro que deseas eliminar al Usuario {frameworkSeleccionado && frameworkSeleccionado.nombre}?
+          ¿Estás seguro que deseas eliminar las Vacunas {frameworkSeleccionado && frameworkSeleccionado.nombreComunidad}?
           </ModalBody>
           <ModalFooter>
             <button className="btn btn-danger" onClick={()=>peticionDelete()}>

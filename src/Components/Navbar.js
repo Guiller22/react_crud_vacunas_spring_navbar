@@ -8,13 +8,13 @@ import {
 const NavBar = () => {
     return(
         <div className="App">
-    <ReactBootStrap.Navbar collapseOnSelect expand="xl" bg="danger" variant="dark">
+    <ReactBootStrap.Navbar collapseOnSelect expand="xl" variant="dark">
 
   <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
   <ReactBootStrap.Nav className="mr-auto"> 
   <Link to="/Home">
-    <ReactBootStrap.Nav.Link href="#Home">Home</ReactBootStrap.Nav.Link>
+    <ReactBootStrap.Nav.Link color="" href="#Home">Home</ReactBootStrap.Nav.Link>
     </Link>
     <Link to="/CRUD">
     <ReactBootStrap.Nav.Link href="#CRUD">CRUD</ReactBootStrap.Nav.Link>
