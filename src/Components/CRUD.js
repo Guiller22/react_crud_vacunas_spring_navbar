@@ -138,17 +138,17 @@ function CRUD() {
     return (
       <div style={{textAlign: 'center'}}>
   <br />
-        <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}>Insertar</button>
+        <button className="btn btn-success" onClick={()=>abrirCerrarModalInsertar()}><span class="material-icons">add</span></button>
         <br /><br />
       <table className="table table-striped">
         <thead>
           <tr>
             <th>ID</th>
-            <th>nombreComunidad</th>
-            <th>dosisPfizer</th>
-            <th>dosisModerna</th>
-            <th>dosisAdministradas</th>
-            <th>personasPauta</th>
+            <th>Nombre Comunidad</th>
+            <th>Dosis Pfizer</th>
+            <th>Dosis Moderna</th>
+            <th>Dosis Administradas</th>
+            <th>Personas Pauta</th>
           </tr>
         </thead>
         <tbody>
@@ -175,7 +175,7 @@ function CRUD() {
             <td>
               
             <button className="btn btn-primary" onClick={()=>seleccionarFramework(framework, "Editar")}><span class="material-icons">mode_edit</span></button> 
-            <button className="btn btn-danger" onClick={()=>seleccionarFramework(framework, "Eliminar")}>Eliminar</button>
+            <button className="btn btn-danger" onClick={()=>seleccionarFramework(framework, "Eliminar")}><span class="material-icons">delete</span></button>
             </td>
             </tr>
           ))}
@@ -215,7 +215,7 @@ function CRUD() {
         </ModalBody>
         <ModalFooter>
           
-          <button className="btn btn-primary" onClick={()=>peticionPost()}>Insertar</button>{"   "}
+          <button className="btn btn-primary" onClick={()=>peticionPost()}><span class="material-icons">add</span></button>{"   "}
           <button className="btn btn-danger" onClick={()=>abrirCerrarModalInsertar()}>Cancelar</button>
         </ModalFooter>
       </Modal>
@@ -248,7 +248,7 @@ function CRUD() {
           </div>
         </ModalBody>
         <ModalFooter>
-          <button className="btn btn-primary" onClick={()=>peticionPut()}>Modificar</button>{"   "}
+          <button className="btn btn-secondary" onClick={()=>peticionPut()}>Modificar</button>{"   "}
           <button className="btn btn-danger" onClick={()=>abrirCerrarModalEditar()}>Cancelar</button>
         </ModalFooter>
       </Modal>
@@ -258,7 +258,7 @@ function CRUD() {
           ¿Estás seguro que deseas eliminar las Vacunas {frameworkSeleccionado && frameworkSeleccionado.nombreComunidad}?
           </ModalBody>
           <ModalFooter>
-            <button className="btn btn-danger" onClick={()=>peticionDelete()}>
+            <button onClick={()=>peticionDelete()}>
               Sí
             </button>
             <button className="btn btn-secondary" onClick={()=>abrirCerrarModalEliminar()} >
