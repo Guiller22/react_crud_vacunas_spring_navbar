@@ -1,5 +1,5 @@
 //npm i bootstrap reactstrap axios sweetalert
-import 'CRUD.css';
+import './CRUD.css';
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
@@ -179,7 +179,7 @@ function CRUD() {
               
             <td>
               
-            <button className="btn btn-primary" onClick={()=>seleccionarFramework(framework, "Editar")}><span class="material-icons.green">mode_edit</span></button> 
+            <button className="btn btn-primary" onClick={()=>seleccionarFramework(framework, "Editar")}><span class="material-icons colorIcono">mode_edit</span></button> 
             <button className="btn btn-danger" onClick={()=>seleccionarFramework(framework, "Eliminar")}><span class="material-icons">delete</span></button>
             </td>
             </tr>

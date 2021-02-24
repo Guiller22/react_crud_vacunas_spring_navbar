@@ -53,7 +53,10 @@ const Datos_Globales = () => {
   useEffect(() => {
     peticionGet();
   }, [])
-  return ( <div className = "App" > <h1> Datos Globales </h1> 
+  return (
+     <div className = "App" style={
+      {textAlign: 'center',
+      backgroundColor: 'rgba(177, 225, 177, 0.5)' }}> <h1> Datos Globales </h1> 
     <div>
     <p>Dosis entregadas</p>
     <p><b>{dosisEntregadas.toLocaleString("es-ES")}</b></p>
@@ -75,7 +78,7 @@ const Datos_Globales = () => {
     <p><b>{porcientoRecibidas.toLocaleString("es-ES")}</b></p>
   </div>
   </div>
-
+  
   )
 }
 
